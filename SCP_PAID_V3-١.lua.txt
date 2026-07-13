@@ -11,29 +11,7 @@
 -- Add usernames one per line in that pastebin
 -- ══════════════════════════════════════
 
-local WHITELIST_URL = "https://pastebin.com/raw/RULnktcp"
 
-local HttpService = game:GetService("HttpService")
-local Players = game:GetService("Players")
-local LocalPlayer = Players.LocalPlayer
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local RunService = game:GetService("RunService")
-local StarterGui = game:GetService("StarterGui")
-
-local function isWhitelisted(username)
-    local success, result = pcall(function()
-        return game:HttpGet(WHITELIST_URL)
-    end)
-    if success and result then
-        for user in string.gmatch(result, "[^\r\n]+") do
-            local trimmed = user:match("^%s*(.-)%s*$")
-            if string.lower(trimmed) == string.lower(username) then
-                return true
-            end
-        end
-    end
-    return false
-end
 
 -- ══════════════════════════════════════
 -- LOADING / WHITELIST CHECK SCREEN
